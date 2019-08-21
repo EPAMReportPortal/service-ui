@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 
-import { createHashHistory } from 'history';
+import { createBrowserHistory } from 'history';
 import qhistory from 'qhistory';
 import { stringify, parse } from 'qs';
 import 'common/polyfills';
@@ -30,7 +30,13 @@ if (!process.env.production) {
   }
 }
 
-const queryParseHistory = qhistory(createHashHistory({ hashType: 'noslash' }), stringify, parse);
+const queryParseHistory = qhistory(
+  createBrowserHistory({
+    basename: 'ui',
+  }),
+  stringify,
+  parse,
+);
 
 const { store, initialDispatch } = configureStore(queryParseHistory, window.REDUX_STATE);
 

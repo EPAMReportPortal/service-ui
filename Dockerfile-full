@@ -1,26 +1,11 @@
-FROM golang:1.10 as build-backend
-WORKDIR /go/src/github.com/reportportal/service-ui/
-ARG service
-ARG version
-COPY ./Makefile ./glide.yaml ./glide.lock ./main.go ./
-RUN make get-build-deps
-RUN make build-server
-
-FROM node:11-alpine as build-frontend
+FROM node:12-alpine as build-frontend
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
-COPY ./app/package.json /usr/src/app/
-RUN npm install
 COPY ./app/ /usr/src/app/
-RUN NODE_OPTIONS=--max_old_space_size=4096 npm run build && npm run test
+RUN export NODE_OPTIONS="--max-old-space-size=2048"
+RUN npm ci && npm run build && npm run test
 
-FROM alpine:latest
-RUN apk --no-cache add ca-certificates
-WORKDIR /root/
-COPY --from=build-backend /go/src/github.com/reportportal/service-ui/bin/service-ui /
-COPY --from=build-frontend /usr/src/app/build /public
-
-ENV RP_STATICS_PATH=/public
-
-EXPOSE 8080
-ENTRYPOINT ["/service-ui"]
+FROM nginx:alpine
+COPY --from=build-frontend /usr/src/app/build /usr/share/nginx/html
+RUN rm /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/nginx.conf
