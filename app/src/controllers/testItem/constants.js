@@ -16,6 +16,8 @@ export const SET_PAGE_LOADING = `${NAMESPACE}/setPageLoading`;
 export const DEFAULT_SORTING = formatSortingString(['startTime'], SORTING_ASC);
 export const LIST_VIEW = 'LIST_VIEW';
 export const LOG_VIEW = 'LOG_VIEW';
+export const PREDEFINED_FILTER_STATE_STORAGE_KEY = 'predefinedFilterCollapsed';
+export const PREDEFINED_FILTER_STATE_QUERY_KEY = 'predefinedFilter.collapsed';
 
 export const TEST_ITEM_TYPES_MAP = {
   [LEVEL_SUITE]: LEVEL_SUITE,

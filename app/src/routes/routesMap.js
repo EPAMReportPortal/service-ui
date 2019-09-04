@@ -60,7 +60,14 @@ import {
   launchDistinctSelector,
 } from 'controllers/launch';
 import { TEST_ITEM_PAGE } from 'controllers/pages/constants';
-import { fetchTestItemsAction, setLevelAction } from 'controllers/testItem';
+import {
+  fetchTestItemsAction,
+  setLevelAction,
+  setDefaultQueryParams,
+  getQueryConditionsFromStore,
+  namespaceSelector,
+  queryParametersSelector,
+} from 'controllers/testItem';
 import { fetchFiltersAction } from 'controllers/filter';
 import { fetchMembersAction } from 'controllers/members';
 import { fetchProjectDataAction } from 'controllers/administrate';
@@ -70,6 +77,7 @@ import { fetchHistoryPageInfo } from 'controllers/itemsHistory';
 import { fetchProjectsAction } from 'controllers/administrate/projects';
 import { startSetViewMode } from 'controllers/administrate/projects/actionCreators';
 import { SIZE_KEY } from 'controllers/pagination';
+import { createNamespacedQuery } from 'common/utils/routingUtils';
 import { pageRendering, ANONYMOUS_ACCESS, ADMIN_ACCESS } from './constants';
 
 const redirectRoute = (path, createNewAction, onRedirect = () => {}) => ({
@@ -131,6 +139,29 @@ export const onBeforeRouteChange = (dispatch, getState, { action }) => {
       default:
         !authorized && dispatch(redirect({ type: LOGIN_PAGE }));
     }
+  }
+};
+
+const addDefaultParamsToTestItemURL = (dispatch, state) => {
+  const namespace = namespaceSelector(state);
+  const query = queryParametersSelector(state, namespace);
+  const defaultParams = getQueryConditionsFromStore(state);
+  const isAllDefaultSetted = !Object.keys(defaultParams).some(
+    (defaultParamKey) =>
+      !(defaultParamKey in query) && defaultParams[defaultParamKey] !== undefined,
+  );
+  if (!isAllDefaultSetted) {
+    const namespaceQuery = createNamespacedQuery({ ...defaultParams, ...query }, namespace);
+    const linkPayload = state.location.payload;
+    dispatch(
+      redirect({
+        type: TEST_ITEM_PAGE,
+        payload: linkPayload,
+        meta: {
+          query: namespaceQuery,
+        },
+      }),
+    );
   }
 };
 
@@ -248,6 +279,7 @@ export default {
   [PROJECT_LOG_PAGE]: {
     path: '/:projectId/launches/:filterId/:testItemIds+/log',
     thunk: (dispatch) => {
+      dispatch(setDefaultQueryParams());
       dispatch(setDebugMode(false));
       dispatch(fetchLogPageData());
     },
@@ -286,7 +318,8 @@ export default {
   PROJECT_SANDBOX_PAGE: '/:projectId/sandbox',
   [TEST_ITEM_PAGE]: {
     path: '/:projectId/launches/:filterId/:testItemIds+',
-    thunk: (dispatch) => {
+    thunk: (dispatch, getState) => {
+      addDefaultParamsToTestItemURL(dispatch, getState());
       dispatch(setDebugMode(false));
       dispatch(fetchTestItemsAction());
     },
