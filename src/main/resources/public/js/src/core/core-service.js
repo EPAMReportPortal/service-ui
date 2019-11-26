@@ -39,6 +39,8 @@ define([
         return call('DELETE', urls.userLogout());
     };
     var userLogin = function (data) {
+        data['username'] = decodeURIComponent(data.username);
+        data['password'] = decodeURIComponent(data.password);
         return call('POST', urls.userLogin(), data, true, false, 'application/x-www-form-urlencoded; charset=UTF-8');
     };
 
