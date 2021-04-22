@@ -15,6 +15,7 @@
  */
 
 export const FAILED = 'failed';
+export const UNTESTED = 'untested';
 export const PASSED = 'passed';
 export const SKIPPED = 'skipped';
 export const INTERRUPTED = 'interrupted';

@@ -55,6 +55,10 @@
   background-color: rgba($COLOR--failed, 0.3);
 }
 
+.table-body-cell-UNTESTED {
+  background-color: $COLOR--steel-grey;
+}
+
 .table-body-cell-SKIPPED {
   background-color: rgba($COLOR--skipped, 0.3);
 }

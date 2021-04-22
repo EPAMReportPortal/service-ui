@@ -32,6 +32,10 @@
   &.status-skipped {
     background-color: $COLOR--skipped;
   }
+
+  &.status-untested {
+    background-color: $COLOR--untested;
+  }
 }
 
 .name {

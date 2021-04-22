@@ -43,6 +43,7 @@ const normalizeExecutions = (executions) => ({
   passed: executions.passed || 0,
   failed: executions.failed || 0,
   skipped: executions.skipped || 0,
+  untested: executions.untested || 0,
 });
 
 @connect((state) => ({

@@ -29,6 +29,10 @@ export const messages = defineMessages({
     id: 'FilterOptions.failed',
     defaultMessage: 'Failed',
   },
+  untested: {
+    id: 'FilterOptions.untested',
+    defaultMessage: 'Untested',
+  },
   total: {
     id: 'FilterOptions.total',
     defaultMessage: 'Total',

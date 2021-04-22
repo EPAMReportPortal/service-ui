@@ -32,7 +32,7 @@ import {
 import { defectTypesSelector } from 'controllers/project';
 import { activeProjectSelector } from 'controllers/user';
 import { SCREEN_XS_MAX } from 'common/constants/screenSizeVariables';
-import { PASSED, FAILED, SKIPPED, INTERRUPTED } from 'common/constants/testStatuses';
+import { PASSED, FAILED, SKIPPED, INTERRUPTED, UNTESTED } from 'common/constants/testStatuses';
 import { formatAttribute } from 'common/utils/attributeUtils';
 import { BEFORE_AFTER_METHOD_TYPES_SEQUENCE } from 'common/constants/methodTypes';
 import { STATE_READY, DEFECTS, TOTAL_KEY } from 'components/widgets/common/constants';
@@ -319,7 +319,7 @@ export class CumulativeTrendChart extends PureComponent {
       });
     } else {
       link = getStatisticsLink({
-        statuses: [PASSED, FAILED, SKIPPED, INTERRUPTED],
+        statuses: [PASSED, FAILED, SKIPPED, INTERRUPTED, UNTESTED],
         compositeAttribute: activeAttributes.map(formatAttribute).join(','),
         launchesLimit: widget.contentParameters.itemsCount,
         providerType: PROVIDER_TYPE_WIDGET,

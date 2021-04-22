@@ -26,6 +26,7 @@ import {
   STATS_PASSED,
   STATS_FAILED,
   STATS_SKIPPED,
+  STATS_UNTESTED,
 } from 'common/constants/statistics';
 import { ENTITY_START_TIME, ENTITY_STATUS } from 'components/filterEntities/constants';
 import { CHART_MODES, MODES_VALUES } from 'common/constants/chartModes';
@@ -78,7 +79,13 @@ const AUTOMATION_BUG = 'statistics$defects$automation_bug$ab001';
 const SYSTEM_ISSUE = 'statistics$defects$system_issue$si001';
 const NO_DEFECT = 'statistics$defects$no_defect$nd001';
 const TO_INVESTIGATE = 'statistics$defects$to_investigate$ti001';
-const STATIC_BASE_COLUMNS = [STATS_TOTAL, STATS_PASSED, STATS_FAILED, STATS_SKIPPED];
+const STATIC_BASE_COLUMNS = [
+  STATS_TOTAL,
+  STATS_PASSED,
+  STATS_FAILED,
+  STATS_SKIPPED,
+  STATS_UNTESTED,
+];
 const BASE_COLUMNS_ORDER = [
   ENTITY_START_TIME,
   ENTITY_STATUS,
@@ -86,6 +93,7 @@ const BASE_COLUMNS_ORDER = [
   STATS_PASSED,
   STATS_FAILED,
   STATS_SKIPPED,
+  STATS_UNTESTED,
   PRODUCT_BUG,
   AUTOMATION_BUG,
   SYSTEM_ISSUE,

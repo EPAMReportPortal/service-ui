@@ -60,4 +60,7 @@
       fill: $COLOR--gray-60;
     }
   }
+  &.untested {
+    background-color: $COLOR--untested;
+  }
 }

@@ -70,6 +70,7 @@ export const orderedContentFieldsSelector = createSelector(
     'statistics$executions$passed',
     'statistics$executions$failed',
     'statistics$executions$skipped',
+    'statistics$executions$untested',
     ...orderedDefectFields,
   ],
 );

@@ -188,6 +188,12 @@
       }
     }
 
+    &.statistics-untested {
+      &:before {
+        background-color: $COLOR--untested;
+      }
+    }
+
     &.statistics-total {
       &:before {
         background-color: $COLOR--topaz;

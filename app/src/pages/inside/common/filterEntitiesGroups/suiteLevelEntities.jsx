@@ -26,6 +26,7 @@ import {
   STATS_FAILED,
   STATS_PASSED,
   STATS_SKIPPED,
+  STATS_UNTESTED,
 } from 'common/constants/statistics';
 import { DEFECT_TYPES_SEQUENCE, NO_DEFECT } from 'common/constants/defectTypes';
 import {
@@ -79,6 +80,10 @@ const messages = defineMessages({
   PassedTitle: {
     id: 'SuiteLevelEntities.PassedTitle',
     defaultMessage: 'Passed',
+  },
+  UntestedTitle: {
+    id: 'SuiteLevelEntities.UntestedTitle',
+    defaultMessage: 'Untested',
   },
   FailedTitle: {
     id: 'SuiteLevelEntities.FailedTitle',
@@ -278,6 +283,21 @@ export class SuiteLevelEntities extends Component {
         validationFunc: commonValidators.launchNumericEntity,
         title: intl.formatMessage(messages.PassedTitle),
         active: visibleFilters.includes(STATS_PASSED),
+        removable: true,
+        customProps: {
+          conditions: [CONDITION_GREATER_EQ, CONDITION_LESS_EQ, CONDITION_EQ],
+          placeholder: intl.formatMessage(messages.STATS_PLACEHOLDER),
+        },
+      },
+      {
+        id: STATS_UNTESTED,
+        component: EntityInputConditional,
+        value: this.bindDefaultValue(STATS_UNTESTED, {
+          condition: CONDITION_GREATER_EQ,
+        }),
+        validationFunc: commonValidators.launchNumericEntity,
+        title: intl.formatMessage(messages.UntestedTitle),
+        active: visibleFilters.includes(STATS_UNTESTED),
         removable: true,
         customProps: {
           conditions: [CONDITION_GREATER_EQ, CONDITION_LESS_EQ, CONDITION_EQ],

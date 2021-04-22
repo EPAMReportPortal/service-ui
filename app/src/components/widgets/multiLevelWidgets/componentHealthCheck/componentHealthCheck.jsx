@@ -29,7 +29,7 @@ import {
   COLOR_DULL_GREEN,
 } from 'common/constants/colors';
 import { formatAttribute } from 'common/utils';
-import { PASSED, FAILED, SKIPPED, INTERRUPTED } from 'common/constants/testStatuses';
+import { PASSED, FAILED, SKIPPED, INTERRUPTED, UNTESTED } from 'common/constants/testStatuses';
 import {
   statisticsLinkSelector,
   TEST_ITEMS_TYPE_LIST,
@@ -183,7 +183,7 @@ export class ComponentHealthCheck extends Component {
     const compositeAttributes =
       breadcrumbs && getNewActiveAttributes(breadcrumbs.key, value, activeAttributes);
     const link = getStatisticsLink({
-      statuses: [PASSED, FAILED, SKIPPED, INTERRUPTED],
+      statuses: [PASSED, FAILED, SKIPPED, INTERRUPTED, UNTESTED],
       launchesLimit: DEFAULT_LAUNCHES_LIMIT,
       compositeAttribute: compositeAttributes && compositeAttributes.map(formatAttribute).join(','),
       isLatest: widget.contentParameters.widgetOptions.latest,

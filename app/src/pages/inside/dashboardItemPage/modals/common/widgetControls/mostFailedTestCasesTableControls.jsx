@@ -24,7 +24,7 @@ import { URLS } from 'common/urls';
 import { validate, bindMessageToValidator } from 'common/utils/validation';
 import { getWidgetCriteriaOptions } from './utils/getWidgetCriteriaOptions';
 import {
-  SKIPPED_FAILED_LAUNCHES_OPTIONS,
+  SKIPPED_FAILED_UNTESTED_LAUNCHES_OPTIONS,
   DEFECT_STATISTICS_OPTIONS,
   ITEMS_INPUT_WIDTH,
 } from './constants';
@@ -82,7 +82,7 @@ export class MostFailedTestCasesTableControls extends Component {
     super(props);
     const { intl, widgetSettings, initializeControlsForm } = props;
     this.criteria = getWidgetCriteriaOptions(
-      [SKIPPED_FAILED_LAUNCHES_OPTIONS, DEFECT_STATISTICS_OPTIONS],
+      [SKIPPED_FAILED_UNTESTED_LAUNCHES_OPTIONS, DEFECT_STATISTICS_OPTIONS],
       intl.formatMessage,
     );
     initializeControlsForm({

@@ -24,7 +24,7 @@ import {
   SYSTEM_ISSUE,
   TO_INVESTIGATE,
 } from 'common/constants/defectTypes';
-import { FAILED, INTERRUPTED, PASSED, SKIPPED } from 'common/constants/launchStatuses';
+import { FAILED, INTERRUPTED, PASSED, SKIPPED, UNTESTED } from 'common/constants/launchStatuses';
 import { COMMON_LOCALE_KEYS } from 'common/constants/localization';
 import { Grid } from 'components/main/grid';
 import { AbsRelTime } from 'components/main/absRelTime';
@@ -43,6 +43,7 @@ import {
   STATS_TOTAL,
   STATS_SKIPPED,
   STATS_PASSED,
+  STATS_UNTESTED,
   STATS_FAILED,
   STATS_AB_TOTAL,
   STATS_PB_TOTAL,
@@ -95,6 +96,7 @@ const TotalColumn = ({ className, ...rest }) => (
         FAILED.toUpperCase(),
         SKIPPED.toUpperCase(),
         INTERRUPTED.toUpperCase(),
+        UNTESTED.toUpperCase(),
       ]}
     />
   </div>
@@ -128,6 +130,20 @@ const FailedColumn = ({ className, ...rest }) => (
   </div>
 );
 FailedColumn.propTypes = {
+  className: PropTypes.string.isRequired,
+};
+
+const UntestedColumn = ({ className, ...rest }) => (
+  <div className={cx('untested-col', className)}>
+    <ExecutionStatistics
+      itemId={rest.value.id}
+      title={rest.title}
+      value={rest.value.statistics.executions && rest.value.statistics.executions.untested}
+      statuses={[UNTESTED.toUpperCase()]}
+    />
+  </div>
+);
+UntestedColumn.propTypes = {
   className: PropTypes.string.isRequired,
 };
 
@@ -341,6 +357,18 @@ export class LaunchSuiteGrid extends PureComponent {
         withFilter: true,
         filterEventInfo: events.PASSED_FILTER,
         sortingEventInfo: events.PASSED_SORTING,
+      },
+      {
+        id: STATS_UNTESTED,
+        title: {
+          full: 'untested',
+          short: 'un',
+        },
+        component: UntestedColumn,
+        sortable: true,
+        withFilter: true,
+        filterEventInfo: events.UNTESTED_FILTER,
+        sortingEventInfo: events.UNTESTED_SORTING,
       },
       {
         id: STATS_FAILED,

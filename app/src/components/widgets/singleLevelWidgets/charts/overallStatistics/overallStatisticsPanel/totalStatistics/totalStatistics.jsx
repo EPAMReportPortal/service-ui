@@ -33,7 +33,8 @@ export class TotalStatistics extends React.PureComponent {
     const passed = values.statistics$executions$passed;
     const failed = values.statistics$executions$failed;
     const skipped = values.statistics$executions$skipped;
-    const progressData = { total, passed, failed, skipped };
+    const untested = values.statistics$executions$untested;
+    const progressData = { total, passed, failed, skipped, untested };
 
     return (
       <div className={cx('container')}>
@@ -73,6 +74,15 @@ export class TotalStatistics extends React.PureComponent {
 
               <div className={cx('label')}>
                 <div className={cx('marker')} /> Skipped
+              </div>
+            </div>
+          )}
+          {untested >= 0 && (
+            <div className={cx('details-item')}>
+              <div className={cx('amount')}>{untested}</div>
+
+              <div className={cx('label')}>
+                <div className={cx('marker')} /> Untested
               </div>
             </div>
           )}

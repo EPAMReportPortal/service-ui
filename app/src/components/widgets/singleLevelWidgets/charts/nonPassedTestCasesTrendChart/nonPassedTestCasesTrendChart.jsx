@@ -26,13 +26,13 @@ import {
 import { connect } from 'react-redux';
 import { statisticsLinkSelector } from 'controllers/testItem';
 import { activeProjectSelector } from 'controllers/user';
-import { FAILED, SKIPPED, INTERRUPTED } from 'common/constants/testStatuses';
+import { FAILED, SKIPPED, INTERRUPTED, UNTESTED } from 'common/constants/testStatuses';
 import { getConfig } from './config/getConfig';
 import styles from './nonPassedTestCasesTrendChart.scss';
 
 const cx = classNames.bind(styles);
 
-const FAILED_SKIPPED_STATISTICS_KEY = 'statistics$executions$failedSkippedTotal';
+const FAILED_SKIPPED_UNTESTED_STATISTICS_KEY = 'statistics$executions$failedSkippedUntestedTotal';
 
 @injectIntl
 @connect(
@@ -67,7 +67,7 @@ export class NonPassedTestCasesTrendChart extends Component {
     const { widget, getStatisticsLink, project } = this.props;
     const launchIds = widget.content.result.map((item) => item.id);
     const link = getStatisticsLink({
-      statuses: [FAILED, SKIPPED, INTERRUPTED],
+      statuses: [FAILED, SKIPPED, INTERRUPTED, UNTESTED],
       types: null,
     });
     const navigationParams = getDefaultTestItemLinkParams(
@@ -88,7 +88,7 @@ export class NonPassedTestCasesTrendChart extends Component {
   legendConfig = {
     showLegend: true,
     legendProps: {
-      items: [FAILED_SKIPPED_STATISTICS_KEY],
+      items: [FAILED_SKIPPED_UNTESTED_STATISTICS_KEY],
       disabled: true,
     },
   };

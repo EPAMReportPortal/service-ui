@@ -157,7 +157,13 @@ export class InvestigatedTrendChart extends Component {
     const link = defectTypeLocators
       ? getDefectLink({ defects: defectTypeLocators, itemId: id })
       : getStatisticsLink({
-          statuses: [STATUSES.PASSED, STATUSES.FAILED, STATUSES.SKIPPED, STATUSES.INTERRUPTED],
+          statuses: [
+            STATUSES.PASSED,
+            STATUSES.FAILED,
+            STATUSES.SKIPPED,
+            STATUSES.INTERRUPTED,
+            STATUSES.UNTESTED,
+          ],
         });
 
     this.props.navigate(Object.assign(link, defaultParams));

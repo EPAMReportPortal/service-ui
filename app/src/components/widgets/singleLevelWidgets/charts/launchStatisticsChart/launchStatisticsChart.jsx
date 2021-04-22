@@ -28,7 +28,7 @@ import {
 } from 'controllers/testItem';
 import { activeProjectSelector } from 'controllers/user';
 import { createFilterAction } from 'controllers/filter';
-import { PASSED, FAILED, SKIPPED, INTERRUPTED } from 'common/constants/testStatuses';
+import { PASSED, FAILED, SKIPPED, INTERRUPTED, UNTESTED } from 'common/constants/testStatuses';
 import { CHART_MODES, MODES_VALUES } from 'common/constants/chartModes';
 import { ALL } from 'common/constants/reservedFilterIds';
 import { ChartContainer } from 'components/widgets/common/c3chart';
@@ -162,7 +162,7 @@ export class LaunchStatisticsChart extends Component {
 
   getLinkParametersStatuses = ({ defectType }) => {
     if (defectType === TOTAL_KEY) {
-      return [PASSED, FAILED, SKIPPED, INTERRUPTED];
+      return [PASSED, FAILED, SKIPPED, INTERRUPTED, UNTESTED];
     }
     return [defectType.toUpperCase()];
   };

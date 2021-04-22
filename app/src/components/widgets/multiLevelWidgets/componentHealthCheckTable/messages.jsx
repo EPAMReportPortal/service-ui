@@ -21,6 +21,7 @@ import {
   STATS_PASSED,
   STATS_FAILED,
   STATS_SKIPPED,
+  STATS_UNTESTED,
 } from 'common/constants/statistics';
 import {
   PRODUCT_BUG,
@@ -36,6 +37,8 @@ import {
   passedColumnFullTitle,
   failedColumnShortTitle,
   failedColumnFullTitle,
+  untestedColumnShortTitle,
+  untestedColumnFullTitle,
   totalColumnShortTitle,
 } from 'components/widgets/singleLevelWidgets/tables/components/messages';
 import { NAME, CUSTOM_COLUMN, STATUS, PASS_RATE } from './constants';
@@ -99,6 +102,10 @@ export const COLUMN_NAMES_MAP = {
   [STATS_SKIPPED]: () => ({
     full: skippedColumnFullTitle,
     short: skippedColumnShortTitle,
+  }),
+  [STATS_UNTESTED]: () => ({
+    full: untestedColumnFullTitle,
+    short: untestedColumnShortTitle,
   }),
   [TO_INVESTIGATE]: () => ({
     full: toInvestigateColumnTitle,

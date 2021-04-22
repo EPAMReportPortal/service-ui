@@ -26,6 +26,7 @@ const getExecutions = () => [
   'statistics$executions$failed',
   'statistics$executions$skipped',
   'statistics$executions$passed',
+  'statistics$executions$untested',
 ];
 
 const getTotal = () => ['statistics$executions$total'];

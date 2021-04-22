@@ -17,6 +17,7 @@
 export const FAILED = 'FAILED';
 export const PASSED = 'PASSED';
 export const SKIPPED = 'SKIPPED';
+export const UNTESTED = 'UNTESTED';
 export const INTERRUPTED = 'INTERRUPTED';
 export const IN_PROGRESS = 'IN_PROGRESS';
 export const STOPPED = 'STOPPED';

@@ -16,7 +16,7 @@
 
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import { FAILED, INTERRUPTED, SKIPPED, PASSED } from 'common/constants/testStatuses';
+import { FAILED, INTERRUPTED, SKIPPED, PASSED, UNTESTED } from 'common/constants/testStatuses';
 import styles from './progressBar.scss';
 
 const cx = classNames.bind(styles);
@@ -30,7 +30,7 @@ export class ProgressBar extends React.PureComponent {
   static getPercentage = (value, totalVal) => `${(value / totalVal) * 100}%`;
 
   render() {
-    const { total, passed, failed, skipped } = this.props.progressData;
+    const { total, passed, failed, skipped, untested } = this.props.progressData;
     const { getPercentage } = ProgressBar;
 
     return (
@@ -49,6 +49,11 @@ export class ProgressBar extends React.PureComponent {
           onClick={() => this.props.onChartClick(SKIPPED)}
           style={{ width: getPercentage(skipped, total) }}
           className={cx('skipped')}
+        />
+        <div
+          onClick={() => this.props.onChartClick(UNTESTED)}
+          style={{ width: getPercentage(untested, total) }}
+          className={cx('untested')}
         />
       </div>
     );

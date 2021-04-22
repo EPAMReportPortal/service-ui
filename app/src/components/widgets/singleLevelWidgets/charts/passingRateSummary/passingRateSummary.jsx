@@ -18,7 +18,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { STATS_PASSED } from 'common/constants/statistics';
-import { PASSED, FAILED, INTERRUPTED, SKIPPED } from 'common/constants/testStatuses';
+import { PASSED, FAILED, INTERRUPTED, SKIPPED, UNTESTED } from 'common/constants/testStatuses';
 import { statisticsLinkSelector, TEST_ITEMS_TYPE_LIST } from 'controllers/testItem';
 import { activeProjectSelector } from 'controllers/user';
 import { getDefaultTestItemLinkParams } from 'components/widgets/common/utils';
@@ -45,7 +45,7 @@ export class PassingRateSummary extends Component {
   onChartClick = (data) => {
     const { widget, getStatisticsLink, project } = this.props;
     const link = getStatisticsLink({
-      statuses: data.id === STATS_PASSED ? [PASSED] : [FAILED, INTERRUPTED, SKIPPED],
+      statuses: data.id === STATS_PASSED ? [PASSED] : [FAILED, INTERRUPTED, SKIPPED, UNTESTED],
       launchesLimit: widget.contentParameters.itemsCount,
       types: null,
     });

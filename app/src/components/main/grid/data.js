@@ -71,6 +71,12 @@ export const SIMPLE_COLUMNS = [
     align: ALIGN_CENTER,
     formatter: ({ skipped }) => skipped,
   },
+  {
+    id: 'untested',
+    title: { full: 'untested' },
+    align: ALIGN_CENTER,
+    formatter: ({ untested }) => untested,
+  },
 ];
 
 export const STEP_DATA = [

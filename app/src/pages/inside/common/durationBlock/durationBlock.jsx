@@ -44,6 +44,10 @@ const messages = defineMessages({
     id: 'DurationBlock.skipped',
     defaultMessage: 'SKIPPED. Duration: { durationTime }',
   },
+  untested: {
+    id: 'DurationBlock.untested',
+    defaultMessage: 'UNTESTED. Duration: { durationTime }',
+  },
   stopped: {
     id: 'DurationBlock.stopped',
     defaultMessage: 'Run STOPPED after: { durationTime }. Stopped at: { endTime }',
@@ -116,6 +120,10 @@ export class DurationBlock extends Component {
       return formatMessage(messages.skipped, { durationTime });
     }
 
+    if (this.isUntested()) {
+      return formatMessage(messages.untested, { durationTime });
+    }
+
     if (this.isStopped()) {
       return formatMessage(messages.stopped, { durationTime, endTime });
     }
@@ -153,6 +161,7 @@ export class DurationBlock extends Component {
   isInProgress = () => this.props.status === 'IN_PROGRESS';
   isStopped = () => this.props.status === 'STOPPED';
   isSkipped = () => this.props.status === 'SKIPPED';
+  isUntested = () => this.props.status === 'UNTESTED';
   isInterrupted = () => this.props.status === 'INTERRUPTED';
 
   validateForApproximateTime = () => {

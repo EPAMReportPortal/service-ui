@@ -18,7 +18,12 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, defineMessages } from 'react-intl';
 import { FieldProvider } from 'components/fields/fieldProvider';
-import { STATS_TOTAL, STATS_FAILED, STATS_SKIPPED } from 'common/constants/statistics';
+import {
+  STATS_TOTAL,
+  STATS_FAILED,
+  STATS_SKIPPED,
+  STATS_UNTESTED,
+} from 'common/constants/statistics';
 import { commonValidators } from 'common/utils/validation';
 import { ITEMS_INPUT_WIDTH } from './constants';
 import { FiltersControl, InputControl } from './controls';
@@ -55,7 +60,7 @@ export class NotPassedTestCasesTrendControls extends Component {
     const { widgetSettings, initializeControlsForm } = props;
     initializeControlsForm({
       contentParameters: widgetSettings.contentParameters || {
-        contentFields: [STATS_FAILED, STATS_SKIPPED, STATS_TOTAL],
+        contentFields: [STATS_FAILED, STATS_SKIPPED, STATS_TOTAL, STATS_UNTESTED],
         widgetOptions: {},
         itemsCount: DEFAULT_ITEMS_COUNT,
       },

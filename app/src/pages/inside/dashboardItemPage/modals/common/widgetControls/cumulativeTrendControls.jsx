@@ -27,7 +27,12 @@ import {
   commonValidators,
 } from 'common/utils/validation';
 import { URLS } from 'common/urls';
-import { STATS_FAILED, STATS_PASSED, STATS_SKIPPED } from 'common/constants/statistics';
+import {
+  STATS_FAILED,
+  STATS_PASSED,
+  STATS_SKIPPED,
+  STATS_UNTESTED,
+} from 'common/constants/statistics';
 import { FieldProvider } from 'components/fields/fieldProvider';
 import { DEFAULT_LAUNCHES_LIMIT } from 'controllers/testItem';
 import { activeProjectSelector } from 'controllers/user';
@@ -44,7 +49,7 @@ import styles from './widgetControls.scss';
 const cx = classNames.bind(styles);
 
 const MAX_ATTRIBUTES_AMOUNT = 2;
-const STATIC_CONTENT_FIELDS = [STATS_FAILED, STATS_SKIPPED, STATS_PASSED];
+const STATIC_CONTENT_FIELDS = [STATS_FAILED, STATS_SKIPPED, STATS_PASSED, STATS_UNTESTED];
 
 const messages = defineMessages({
   CriteriaFieldLabel: {

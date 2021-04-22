@@ -17,7 +17,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import { SKIPPED, RESETED, FAILED, NOT_FOUND } from 'common/constants/testStatuses';
+import { SKIPPED, RESETED, FAILED, NOT_FOUND, UNTESTED } from 'common/constants/testStatuses';
 import Parser from 'html-react-parser';
 import NoItemIcon from './img/noItem-inline.svg';
 import EmptyItemIcon from './img/emptyItem-inline.svg';
@@ -75,6 +75,7 @@ export class HistoryLineItemBadge extends Component {
 
     switch (status) {
       case FAILED:
+      case UNTESTED:
       case SKIPPED: {
         badge = this.getDefectBadge();
         break;
