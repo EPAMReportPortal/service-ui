@@ -56,7 +56,12 @@ import {
   pluginRouteSelector,
 } from 'controllers/pages';
 import { attributesArray, isNotEmptyArray } from 'common/utils/validation/validate';
-import { requiredField } from 'common/utils/validation/commonValidators';
+import {
+  requiredField,
+  btsUrl,
+  btsProject,
+  btsIntegrationName,
+} from 'common/utils/validation/commonValidators';
 import {
   composeValidators,
   bindMessageToValidator,
@@ -273,6 +278,9 @@ export const createImportProps = (pluginName) => ({
     attributesArray,
     isNotEmptyArray,
     requiredField,
+    btsUrl,
+    btsProject,
+    btsIntegrationName,
     helpers: { composeValidators, bindMessageToValidator },
   },
 });
