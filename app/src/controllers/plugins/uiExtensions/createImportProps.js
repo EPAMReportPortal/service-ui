@@ -135,7 +135,12 @@ import {
   getItemNameConfig,
   getDefectTypeLocators,
 } from 'components/widgets/common/utils';
-import { IntegrationSettings, IntegrationFormField } from 'components/integrations/elements';
+import {
+  IntegrationSettings,
+  IntegrationFormField,
+  BtsAuthFieldsInfo,
+  BtsPropertiesForIssueForm,
+} from 'components/integrations/elements';
 import { createGlobalNamedIntegrationsSelector } from '../selectors';
 
 const BUTTONS = {
@@ -212,6 +217,8 @@ export const createImportProps = (pluginName) => ({
     FieldArray,
     IntegrationSettings,
     IntegrationFormField,
+    BtsAuthFieldsInfo,
+    BtsPropertiesForIssueForm,
   },
   constants: {
     PLUGIN_UI_EXTENSION_ADMIN_PAGE,
