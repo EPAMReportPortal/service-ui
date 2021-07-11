@@ -34,7 +34,7 @@ import { NavigationTabs } from 'components/main/navigationTabs';
 import { NoCasesBlock } from 'components/main/noCasesBlock';
 import { ItemList } from 'components/main/itemList';
 import { ModalLayout, ModalField } from 'components/main/modal';
-import { showModalAction } from 'controllers/modal';
+import { showModalAction, hideModalAction } from 'controllers/modal';
 import { fetch } from 'common/utils/fetch';
 import { isEmptyObject } from 'common/utils/isEmptyObject';
 import {
@@ -237,6 +237,7 @@ export const createImportProps = (pluginName) => ({
   },
   actions: {
     showModalAction,
+    hideModalAction,
     showSuccessNotification,
     showErrorNotification,
     fetchProjectAction,
